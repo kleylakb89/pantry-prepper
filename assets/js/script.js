@@ -10,5 +10,29 @@
 // modal for null searches
 // no results found for bad searches
 // running total of prices in local storage
+//*Challenges* - workflow, 
 
-console.log('hi');
+//https://www.themealdb.com/api.php without format
+// http://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast with format
+
+
+
+var searchResultsEl = document.querySelector("#search-results");
+var userSearch = document.querySelector("#user-search");
+var searchButton = document.querySelector("#search-button");
+
+
+var getRecipe = function(){
+    var searchURL;
+
+
+}
+var init = function(){
+    
+}
+
+
+
+
+
+init();
