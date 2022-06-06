@@ -8,5 +8,7 @@
 // moment for expiration dates
 // local storage to save searched ingredients
 // modal for null searches
+// no results found for bad searches
+// running total of prices in local storage
 
 console.log('hi');
