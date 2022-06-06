@@ -50,16 +50,33 @@ function displayResults(data) {
     //     </div>
     //   </div> 
 
-    for (var meal of data.meals) {
+    for (var i = 0; i < data.meals.length; i++) {
         var articleEl = document.createElement('article');
         articleEl.className = 'card display-card';
 
         var imgEl = document.createElement('img');
         imgEl.className = 'card-img-top';
-        for (var i = 0; i < data.meals.length; i++) {
+
+        var cardEl = document.createElement('div');
+        cardEl.className = 'card-body';
+
+
+        var h5El = document.createElement('h5');
+        h5El.className= 'card-title';
+
+        
             imgEl.src = data.meals[i].strMealThumb;
+            h5El.textContent = data.meals[i].strMeal;
+
+            cardEl.append(h5El);
+            articleEl.append(imgEl, cardEl);
+            searchResultsEl.append(articleEl);
+
+    
             
-        }
+        
+
+        
 
     
 
