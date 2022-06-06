@@ -17,22 +17,33 @@
 
 
 
-var searchResultsEl = document.querySelector("#search-results");
-var userSearch = document.querySelector("#user-search");
-var searchButton = document.querySelector("#search-button");
+var searchResultsEl = document.querySelector('#search-results');
+var userSearch = document.querySelector('#user-search');
+var searchBtn = document.querySelector('#search-button');
 
 
-var getRecipe = function(){
-    var searchURL;
+function getRecipe() {
+    var foodItem = userSearch.value.trim();
 
+    var recipeApi = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast';
 
-}
-var init = function(){
+    fetch(recipeApi)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+    })
+};
     
-}
-
-
-
-
+function init() {
+        
+ }
+    
+    
+    
+    
+    
+searchBtn.addEventListener('click', getRecipe);
 
 init();
