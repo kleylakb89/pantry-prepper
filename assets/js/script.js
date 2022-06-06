@@ -20,6 +20,7 @@
 var searchResultsEl = document.querySelector('#search-results');
 var userSearch = document.querySelector('#user-search');
 var searchBtn = document.querySelector('#search-button');
+var searchHistory = document.querySelector('#search-history');
 
 
 
@@ -78,15 +79,23 @@ function displayResults(data) {
         searchResultsEl.append(articleEl);
 
     }
+    displayHistory();
 }
 function saveSearch(foodItem) {
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
     recentSearch.push(foodItem);
     localStorage.setItem('foodHistory', JSON.stringify(recentSearch));
-
+    displayHistory();
 }
 
 function displayHistory(){
+    var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
+    searchHistory.innerHTML = null;
+    for(var food of recentSearch){
+        var historyBtn = document.createElement('button');
+        historyBtn.textContent = food;
+        searchHistory.append(historyBtn);
+    }
     
 }
 
