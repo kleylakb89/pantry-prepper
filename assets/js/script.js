@@ -14,6 +14,7 @@
 
 //https://www.themealdb.com/api.php without format
 // http://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast with format
+// https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata by name
 
 
 var searchResultsEl = document.querySelector('#search-results');
@@ -34,6 +35,7 @@ function getRecipe() {
         .then(function (data) {
             displayResults(data);
             saveSearch(foodItem);
+            console.log(data);
         })
 };
 
@@ -60,19 +62,27 @@ function displayResults(data) {
         var cardEl = document.createElement('div');
         cardEl.className = 'card-body';
 
-        var h5El = document.createElement('h5');
-        h5El.className = 'card-title';
+        var titleEl = document.createElement('a');
+        titleEl.className = 'card-title';
+
+        var idNum = data.meals[i].idMeal;
 
         imgEl.src = data.meals[i].strMealThumb;
-        h5El.textContent = data.meals[i].strMeal;
+        titleEl.textContent = data.meals[i].strMeal;
+        titleEl.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
 
-        cardEl.append(h5El);
-        articleEl.append(imgEl, cardEl);
+        cardEl.append(titleEl);
+        articleEl.append(cardEl, imgEl);
         searchResultsEl.append(articleEl);
     }
     
     displayHistory();
 }
+// https://www.themealdb.com/meal/53060-Burek-Recipe
+function recipeLink() {
+
+}
+
 function saveSearch(foodItem) {
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
     if (!recentSearch.includes(foodItem)) {
