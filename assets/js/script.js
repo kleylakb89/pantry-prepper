@@ -21,7 +21,7 @@ var searchResultsEl = document.querySelector('#search-results');
 var userSearch = document.querySelector('#user-search');
 var searchBtn = document.querySelector('#search-button');
 var searchHistory = document.querySelector('#search-history');
-
+var notFound = document.querySelector('#not-found');
 
 function getRecipe() {
     var foodItem = userSearch.value.trim();
@@ -30,11 +30,46 @@ function getRecipe() {
 
     fetch(recipeApi)
         .then(function (response) {
-            return response.json();
+            if (response.ok) {
+
+                return response.json();
+            } else {
+                //<!-- Vertically centered modal -->
+                /* <div class="modal-dialog modal-dialog-centered">
+  ...
+                </div>*/
+                // var warningModal = document.createElement('div');
+                // warningModal.className = 'modal-dialog modal-dialog-centered';
+                //warningModal.textContent = 'Results not found, please try again.';
+                var divEl = document.createElement('div');
+                divEl.className= 'row';
+                divEl.textContent= 'test';
+
+                notFound.append(divEl);
+                return;
+            }
+
+
+
         })
         .then(function (data) {
-            displayResults(data);
-            saveSearch(foodItem);
+            if (data.length !== 0) {
+
+                displayResults(data);
+                saveSearch(foodItem);
+            } else {
+                // var warningModal = document.createElement('div');
+                // warningModal.className = 'modal-dialog modal-dialog-centered';
+                //warningModal.textContent = 'Results not found, please try again.';
+
+                var divEl = document.createElement('div');
+                divEl.className= 'row';
+                divEl.textContent= 'test';
+
+                notFound.append(divEl);
+                return;
+
+            }
             console.log(data);
         })
 };
@@ -75,7 +110,7 @@ function displayResults(data) {
         articleEl.append(cardEl, imgEl);
         searchResultsEl.append(articleEl);
     }
-    
+
     displayHistory();
 }
 // https://www.themealdb.com/meal/53060-Burek-Recipe
@@ -88,17 +123,17 @@ function saveSearch(foodItem) {
     if (!recentSearch.includes(foodItem)) {
         recentSearch.push(foodItem);
     }
-    
+
     localStorage.setItem('foodHistory', JSON.stringify(recentSearch));
     displayHistory();
 }
 
-function displayHistory(){
+function displayHistory() {
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
-    
+
     searchHistory.innerHTML = null;
-    
-    for(var food of recentSearch){
+
+    for (var food of recentSearch) {
         var historyBtn = document.createElement('button');
         historyBtn.className = 'past-search';
         historyBtn.textContent = food;
@@ -117,12 +152,12 @@ function init() {
 
 searchBtn.addEventListener('click', getRecipe);
 
-searchHistory.addEventListener('click', function(event){
+searchHistory.addEventListener('click', function (event) {
     var button = event.target;
     var foodItem = button.textContent;
     var recipeApi = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${foodItem}`;
 
-    if(foodItem === 'Clear History') {
+    if (foodItem === 'Clear History') {
         searchHistory.innerHTML = null;
         localStorage.clear();
         return;
