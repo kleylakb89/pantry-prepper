@@ -26,7 +26,8 @@ var searchBtn = document.querySelector('#search-button');
 function getRecipe() {
     var foodItem = userSearch.value.trim();
 
-    var recipeApi = 'https://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast';
+
+    var recipeApi = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${foodItem}`;
 
     fetch(recipeApi)
         .then(function (response) {
@@ -49,10 +50,11 @@ function displayResults(data) {
     //       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     //     </div>
     //   </div> 
+    searchResultsEl.innerHTML= null;
 
     for (var i = 0; i < data.meals.length; i++) {
         var articleEl = document.createElement('article');
-        articleEl.className = 'card display-card';
+        articleEl.className = 'card display-card w-25';
 
         var imgEl = document.createElement('img');
         imgEl.className = 'card-img-top';
@@ -62,23 +64,23 @@ function displayResults(data) {
 
 
         var h5El = document.createElement('h5');
-        h5El.className= 'card-title';
+        h5El.className = 'card-title';
 
-        
-            imgEl.src = data.meals[i].strMealThumb;
-            h5El.textContent = data.meals[i].strMeal;
 
-            cardEl.append(h5El);
-            articleEl.append(imgEl, cardEl);
-            searchResultsEl.append(articleEl);
+        imgEl.src = data.meals[i].strMealThumb;
+        h5El.textContent = data.meals[i].strMeal;
 
-    
-            
-        
+        cardEl.append(h5El);
+        articleEl.append(imgEl, cardEl);
+        searchResultsEl.append(articleEl);
 
-        
 
-    
+
+
+
+
+
+
 
 
 
@@ -86,14 +88,14 @@ function displayResults(data) {
 
     }
 }
-    function init() {
+function init() {
 
-    }
-
-
+}
 
 
 
-    searchBtn.addEventListener('click', getRecipe);
 
-    init();
+
+searchBtn.addEventListener('click', getRecipe);
+
+init();
