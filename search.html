@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+    <section class="row">
+        <aside class="col-12 col-md-3 p-4 bg-dark text-light">
+            
+            <form id="loc-search-form">
+                <fieldset>
+                  <legend>What Would You Like To Eat</legend>
+                  <div class="mb-3">
+                    <label for="q" class="form-label">Search Food Item</label>
+                    <input type="text" id="q" name="q" class="form-control" placeholder="Search">
+                  </div>
+            
+                  <div class="mb-3">
+                  
+                  </div>
+                  <button type="submit" class="btn btn-light text-dark">Submit</button>
+                </fieldset>
+              </form>
+        </aside>
+        <main class="col-12 col-md-9 p-4 bg-light text-dark">
+            <h2>Search results</h2>
+            <section id="search-results">
+                <article class="card p-3 bg-dark text-light">
+                    <h3>Recipe Name</h3>
+                    <p>Brief recipe description will go here.
+                    </p>
+                    <button class="btn btn-light text-dark">Learn More</button>
+    
+                </article>
+            </section>
+           
+    
+        </main>
+
+    </section>
+    <script src="assets/script.js"></script>
+</body>
+</html>
