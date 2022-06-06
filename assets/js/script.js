@@ -35,7 +35,10 @@ function getRecipe() {
         })
         .then(function (data) {
             displayResults(data);
-            console.log(data);
+
+            saveSearch(foodItem);
+
+
         })
 };
 
@@ -50,7 +53,7 @@ function displayResults(data) {
     //       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
     //     </div>
     //   </div> 
-    searchResultsEl.innerHTML= null;
+    searchResultsEl.innerHTML = null;
 
     for (var i = 0; i < data.meals.length; i++) {
         var articleEl = document.createElement('article');
@@ -74,20 +77,19 @@ function displayResults(data) {
         articleEl.append(imgEl, cardEl);
         searchResultsEl.append(articleEl);
 
-
-
-
-
-
-
-
-
-
-
-
-
     }
 }
+function saveSearch(foodItem) {
+    var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
+    recentSearch.push(foodItem);
+    localStorage.setItem('foodHistory', JSON.stringify(recentSearch));
+
+}
+
+function displayHistory(){
+    
+}
+
 function init() {
 
 }
