@@ -15,30 +15,28 @@
 
 <body>
     <header class="row">
-        <h1 class="col-12 m-2 bg-custom">Welcome to Pantry Prepper!</h1>
+        <h1 class="col-12 m-2 bg-custom d-flex justify-content-center">Welcome to Pantry Prepper!</h1>
     </header>
-    <aside>
-        <div class="input-group">
-            <div class="form-outline">
-                <input type="search" id="user-search" class="form-control" />
-                <label class="form-label" for="form1">Search</label>
+    <main class="row align-items-center">
+        <h2 class="col-12 col-md-6 col-lg-9 m-2 bg-custom d-flex align-items-center">Search Results</h2>
+        <aside class="row">
+            <div class="input-group col-12 col-md-6 col-lg-3 m-2 p-3">
+                <div class="form-outline d-flex justify-content-space-around">
+                    <input type="search" id="user-search" class="form-control" />
+                    <label class="form-label" for="form1"></label>
+                </div>
+                <button type="button" class="btn btn-primary" id="search-button">
+                    Search
+                </button>
             </div>
-            <button type="button" class="btn btn-primary" id="search-button">
-                <i class="fas fa-search"></i>
-            </button>
-        </div>
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-            <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-            </label>
-        </div>
-        <section class="row" id="search-history">
-
-        </section>
-    </aside>
-    <main>
-        <h2>Search Results</h2>
+            <div class="form-check">
+                <input class="form-check-input col-12 col-md-6 col-lg-3 m-2" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Show Prices In Search
+                </label>
+            </div>
+            <section class="row" id="search-history"></section>
+        </aside>
         <div id="not-found"></div>
         <section id="search-results">
             
