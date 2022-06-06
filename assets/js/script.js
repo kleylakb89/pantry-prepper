@@ -10,7 +10,7 @@
 // modal for null searches
 // no results found for bad searches
 // running total of prices in local storage
-//*Challenges* - workflow, 
+//*Challenges* - workflow, appending modal when users search is not found.
 
 //https://www.themealdb.com/api.php without format
 // http://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast with format
@@ -34,18 +34,11 @@ function getRecipe() {
 
                 return response.json();
             } else {
-                //<!-- Vertically centered modal -->
-                /* <div class="modal-dialog modal-dialog-centered">
-  ...
-                </div>*/
-                // var warningModal = document.createElement('div');
-                // warningModal.className = 'modal-dialog modal-dialog-centered';
-                //warningModal.textContent = 'Results not found, please try again.';
-                var divEl = document.createElement('div');
-                divEl.className= 'row';
-                divEl.textContent= 'test';
-
-                notFound.append(divEl);
+        
+                var warningModal = document.createElement('div');
+                warningModal.className = 'modal-dialog modal-dialog-centered';
+                warningModal.textContent = 'Results not found, please try again.';
+                notFound.append(warningModal);
                 return;
             }
 
@@ -53,24 +46,22 @@ function getRecipe() {
 
         })
         .then(function (data) {
-            if (data.length !== 0) {
-
+            if (data.meals !== null) {
+                
+                console.log(data);
                 displayResults(data);
                 saveSearch(foodItem);
             } else {
-                // var warningModal = document.createElement('div');
-                // warningModal.className = 'modal-dialog modal-dialog-centered';
-                //warningModal.textContent = 'Results not found, please try again.';
-
-                var divEl = document.createElement('div');
-                divEl.className= 'row';
-                divEl.textContent= 'test';
-
-                notFound.append(divEl);
+                var warningModal = document.createElement('div');
+                warningModal.className = 'modal-dialog modal-dialog-centered';
+                warningModal.textContent = 'Results not found, please try again.';
+                notFound.append(warningModal);
                 return;
 
             }
-            console.log(data);
+        })
+        .catch(function(err){
+            console.log(err);
         })
 };
 
