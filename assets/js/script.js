@@ -16,17 +16,14 @@
 // http://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast with format
 
 
-
 var searchResultsEl = document.querySelector('#search-results');
 var userSearch = document.querySelector('#user-search');
 var searchBtn = document.querySelector('#search-button');
 var searchHistory = document.querySelector('#search-history');
 
 
-
 function getRecipe() {
     var foodItem = userSearch.value.trim();
-
 
     var recipeApi = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${foodItem}`;
 
@@ -36,10 +33,7 @@ function getRecipe() {
         })
         .then(function (data) {
             displayResults(data);
-
             saveSearch(foodItem);
-
-
         })
 };
 
@@ -66,10 +60,8 @@ function displayResults(data) {
         var cardEl = document.createElement('div');
         cardEl.className = 'card-body';
 
-
         var h5El = document.createElement('h5');
         h5El.className = 'card-title';
-
 
         imgEl.src = data.meals[i].strMealThumb;
         h5El.textContent = data.meals[i].strMeal;
@@ -77,41 +69,39 @@ function displayResults(data) {
         cardEl.append(h5El);
         articleEl.append(imgEl, cardEl);
         searchResultsEl.append(articleEl);
-
     }
+    
     displayHistory();
 }
 function saveSearch(foodItem) {
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
-    for (var i = 0; i < recentSearch.length; i++) {
-        if (recentSearch[i] == foodItem) {
-            recentSearch.splice(i, 1);
-        }
+    if (!recentSearch.includes(foodItem)) {
+        recentSearch.push(foodItem);
     }
-    recentSearch.push(foodItem);
+    
     localStorage.setItem('foodHistory', JSON.stringify(recentSearch));
     displayHistory();
 }
 
 function displayHistory(){
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
+    
     searchHistory.innerHTML = null;
+    
     for(var food of recentSearch){
         var historyBtn = document.createElement('button');
         historyBtn.className = 'past-search';
         historyBtn.textContent = food;
         searchHistory.append(historyBtn);
     }
-    
+    var clearBtn = document.createElement('button');
+    clearBtn.textContent = 'Clear History';
+    searchHistory.append(clearBtn);
 }
-
-
 
 function init() {
-
+    displayHistory();
 }
-
-
 
 
 
@@ -122,17 +112,19 @@ searchHistory.addEventListener('click', function(event){
     var foodItem = button.textContent;
     var recipeApi = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${foodItem}`;
 
+    if(foodItem === 'Clear History') {
+        searchHistory.innerHTML = null;
+        localStorage.clear();
+        return;
+    }
+
     fetch(recipeApi)
         .then(function (response) {
             return response.json();
         })
         .then(function (data) {
             displayResults(data)
-
-
         })
-
-
 })
 
 
