@@ -93,11 +93,14 @@ function displayHistory(){
     searchHistory.innerHTML = null;
     for(var food of recentSearch){
         var historyBtn = document.createElement('button');
+        historyBtn.className = 'past-search';
         historyBtn.textContent = food;
         searchHistory.append(historyBtn);
     }
     
 }
+
+
 
 function init() {
 
@@ -108,5 +111,24 @@ function init() {
 
 
 searchBtn.addEventListener('click', getRecipe);
+
+searchHistory.addEventListener('click', function(event){
+    var button = event.target;
+    var foodItem = button.textContent;
+    var recipeApi = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${foodItem}`;
+
+    fetch(recipeApi)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data) {
+            displayResults(data)
+
+
+        })
+
+
+})
+
 
 init();
