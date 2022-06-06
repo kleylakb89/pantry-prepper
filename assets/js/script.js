@@ -83,6 +83,11 @@ function displayResults(data) {
 }
 function saveSearch(foodItem) {
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
+    for (var i = 0; i < recentSearch.length; i++) {
+        if (recentSearch[i] == foodItem) {
+            recentSearch.splice(i, 1);
+        }
+    }
     recentSearch.push(foodItem);
     localStorage.setItem('foodHistory', JSON.stringify(recentSearch));
     displayHistory();
