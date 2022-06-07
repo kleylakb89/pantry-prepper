@@ -28,8 +28,8 @@ var avgPrice = document.querySelector('#price');
 var checkEl = document.querySelector('#flexCheckDefault');
 
 
-function getId(){
-    var ingredient = userSearch.value.trim();
+function getId(foodItem){
+    var ingredient = foodItem;
 
     var idApi =`https://api.spoonacular.com/food/ingredients/search?query=${ingredient}&apiKey=03919bc242a04398b67fc175ce89ad98`;
     
@@ -89,7 +89,7 @@ function getRecipe() {
         .then(function (data) {
             if (data.meals !== null) {
                 if (checkEl.checked) {
-                    getId();
+                    getId(foodItem);
                     displayResults(data);
                     saveSearch(foodItem);
                 } else {
@@ -108,6 +108,7 @@ function getRecipe() {
 
 function displayResults(data) {
     searchResultsEl.innerHTML = null;
+    avgPrice.innerHTML = null;
 
     // so i had to change the article classs to card-body. which looking at it now is the same class for 
     // our cardEl may not be an issue just typing and seeing lol
@@ -156,6 +157,7 @@ function displayHistory() {
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
 
     searchHistory.innerHTML = null;
+    avgPrice.innerHTML = null;
 
     for (var food of recentSearch) {
         var historyBtn = document.createElement('button');
@@ -194,7 +196,10 @@ searchHistory.addEventListener('click', function (event) {
             return response.json();
         })
         .then(function (data) {
-            displayResults(data)
+            if (checkEl.checked) {
+                getId(foodItem);
+                displayResults(data);
+            } else displayResults(data);
         })
 })
 

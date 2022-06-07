@@ -1,6 +1,27 @@
+:root {
+    --green: #4a5240;
+    --brown: #6f5e5c;
+    --purple: #a28497;
+    --light-purple: #ada8be;
+    --blue: #c6caed;
+    --yellow: #f4ebbe;
+}
+
+h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 100px;
+    color: var(--yellow);
+}
+
+body {
+    background-color: var(--purple);
+}
+
 .search-bar {
     position: sticky;
     top: 0;
+    /* background-color: var(--blue); */
+    background-color: rgba(198, 202, 237, .8);
 }
 
 .modal-button {
