@@ -78,9 +78,11 @@ function displayResults(data) {
     //   </div> 
     searchResultsEl.innerHTML = null;
 
+    // so i had to change the article classs to card-body. which looking at it now is the same class for 
+    // our cardEl may not be an issue just typing and seeing lol
     for (var i = 0; i < data.meals.length; i++) {
         var articleEl = document.createElement('article');
-        articleEl.className = 'card display-card w-25';
+        articleEl.className = 'card-body display-card w-25 p-4';
 
         var imgEl = document.createElement('img');
         imgEl.className = 'card-img-top';
@@ -131,6 +133,8 @@ function displayHistory() {
         searchHistory.append(historyBtn);
     }
     var clearBtn = document.createElement('button');
+    // made it red
+    clearBtn.className = 'btn btn-danger'
     clearBtn.textContent = 'Clear History';
     searchHistory.append(clearBtn);
 }
