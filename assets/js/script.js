@@ -82,10 +82,10 @@ function displayResults(data) {
     // our cardEl may not be an issue just typing and seeing lol
     for (var i = 0; i < data.meals.length; i++) {
         var articleEl = document.createElement('article');
-        articleEl.className = 'card-body display-card w-25 p-4';
+        articleEl.className = 'card-body  display-card w-25 p-4';
 
         var imgEl = document.createElement('img');
-        imgEl.className = 'card-img-top';
+        imgEl.className = 'card-img-top m-1 border border-3 rounded-3 border-info';
 
         var cardEl = document.createElement('div');
         cardEl.className = 'card-body';
@@ -128,13 +128,13 @@ function displayHistory() {
 
     for (var food of recentSearch) {
         var historyBtn = document.createElement('button');
-        historyBtn.className = 'past-search';
+        historyBtn.className = 'past-search col-12 col-md-6 col-lg-3';
         historyBtn.textContent = food;
         searchHistory.append(historyBtn);
     }
     var clearBtn = document.createElement('button');
     // made it red
-    clearBtn.className = 'btn btn-danger'
+    clearBtn.className = 'btn btn-danger col-12 col-md-6 col-lg-3'
     clearBtn.textContent = 'Clear History';
     searchHistory.append(clearBtn);
 }
