@@ -87,6 +87,10 @@ h2 {
     color: var(--dark-purple);
 }
 
+.card-title:hover{
+    color: var(--blue)
+}
+
 #search-results img {
     width: 75%;
     border: 2px solid var(--blue);
@@ -94,6 +98,16 @@ h2 {
     padding: 8px;
 }
 
+.recipe-img{
+    border-radius: 8px;
+}
+
 #price {
     font-family: 'Indie Flower', cursive;
+    font-size: 25px;
+    color: var(--blue);
+}
+
+#price span{
+    color: var(--yellow);
 }

@@ -10,7 +10,21 @@
 // modal for null searches
 // no results found for bad searches
 // running total of prices in local storage
-//*Challenges* - workflow, appending modal when users search is not found.!!!!! (thank you, Sashaaaaaa)
+//*Challenges* - workflow, element postioning, appending modal when users search is not found.!!!!! (thank you, Sashaaaaaa)
+
+// updated to do list:
+// powerpoint
+// img corners rounded
+// index .html page all of it
+// additional color changes to text
+// changing price color to refelct a high price or a low price
+// clean up code and add comments
+// read me
+// portfolio questions
+// card title text too long, causing alignment issues.
+// card spacing too big
+
+
 
 //https://www.themealdb.com/api.php without format
 // http://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast with format
@@ -60,13 +74,16 @@ function displayPrice(ingredient, price) {
     avgPrice.innerHTML = null;
 
     var priceEl = document.createElement('p');
-
+    var spanEl = document.createElement('span');
     priceEl.className = 'text-center';
+    
 
     if (!price) {
         priceEl.textContent = 'Sorry, price not found.';
     } else {
-        priceEl.textContent = `The Average Price of ${ingredient} Per Serving is: $${price}`;
+        priceEl.textContent = `The Average Price of ${ingredient} Per Serving is: `;
+        spanEl.textContent = '$' + price;
+        priceEl.append(spanEl);
     }
 
     avgPrice.append(priceEl);
@@ -117,7 +134,7 @@ function displayResults(data) {
         articleEl.className = 'card-body display-card w-25 p-4';
 
         var imgEl = document.createElement('img');
-        imgEl.className = 'card-img-top m-1 rounded rounded-3';
+        imgEl.className = 'card-img-top m-1 recipe-img';
 
         var cardEl = document.createElement('div');
         cardEl.className = 'card-body';
