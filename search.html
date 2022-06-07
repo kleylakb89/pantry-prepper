@@ -17,9 +17,9 @@
   <header class="row">
     <h1 class="col-12 m-2 bg-custom d-flex justify-content-center">Welcome to Pantry Prepper!</h1>
   </header>
-  <main class="flex-row align-items-center d-flex ">
-    <aside class="row">
-      <div class="input-group col-12 col-md-6 col-lg-4 m-2 p-3">
+  <main class="row">
+    <aside class="position-sticky">
+      <div class="input-group col-12 col-md-6 col-lg-4 m-2 p-3 d-flex align-items-center justify-content-center">
         <div class="form-outline d-flex justify-content-space-around">
           <input type="search" id="user-search" class="form-control" />
           <label class="form-label" for="form1"></label>
@@ -28,13 +28,13 @@
           Search
         </button>
       </div>
-      <div class="form-check">
+      <div class="form-check d-flex align-items-center justify-content-center">
         <input class="form-check-input col-12 col-md-6 col-lg-4 m-2" type="checkbox" value="" id="flexCheckDefault">
         <label class="form-check-label" for="flexCheckDefault">
           Show Prices In Search
         </label>
       </div>
-      <section class="d-flex align-items-start flex-column m-4" id="search-history"></section>
+      <section class="d-flex align-items-center flex-column justify-content-space-around m-4" id="search-history"></section>
     </aside>
     <div class="row" id="not-found"></div>
     <!-- had to make this have a class of card- group instead of card and centered text bang bang -->
