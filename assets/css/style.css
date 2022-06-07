@@ -1,0 +1,8 @@
+.search-bar {
+    position: sticky;
+    top: 0;
+}
+
+.modal-button {
+    display: none;
+}

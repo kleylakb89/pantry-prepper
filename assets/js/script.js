@@ -10,7 +10,7 @@
 // modal for null searches
 // no results found for bad searches
 // running total of prices in local storage
-//*Challenges* - workflow, appending modal when users search is not found.
+//*Challenges* - workflow, appending modal when users search is not found.!!!!! (thank you, Sashaaaaaa)
 
 //https://www.themealdb.com/api.php without format
 // http://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast with format
@@ -34,11 +34,7 @@ function getRecipe() {
 
                 return response.json();
             } else {
-        
-                var warningModal = document.createElement('div');
-                warningModal.className = 'modal-dialog modal-dialog-centered';
-                warningModal.textContent = 'Results not found, please try again.';
-                notFound.append(warningModal);
+                document.querySelector('.modal-button').click();
                 return;
             }
 
@@ -52,10 +48,7 @@ function getRecipe() {
                 displayResults(data);
                 saveSearch(foodItem);
             } else {
-                var warningModal = document.createElement('div');
-                warningModal.className = 'modal-dialog modal-dialog-centered';
-                warningModal.textContent = 'Results not found, please try again.';
-                notFound.append(warningModal);
+                document.querySelector('.modal-button').click();
                 return;
 
             }
