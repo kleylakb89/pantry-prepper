@@ -36,15 +36,27 @@ function getId(){
             return response.json();
         })
         .then(function(data){
-            console.log(data);
             var id = data.results[0].id;
-            console.log(id);
+            getPrice(id);
         })
         
 
 }
 
+function getPrice(id){
+    var priceApi = `https://api.spoonacular.com/recipes/${id}/priceBreakdownWidget.json?apiKey=03919bc242a04398b67fc175ce89ad98`
 
+    fetch(priceApi)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            var price = parseInt(data.totalCost) /100;
+            console.log(price);
+            
+        })
+}
 
 function getRecipe() {
     var foodItem = userSearch.value.trim();
