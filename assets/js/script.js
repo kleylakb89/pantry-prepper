@@ -15,6 +15,8 @@
 //https://www.themealdb.com/api.php without format
 // http://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast with format
 // https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata by name
+// https://api.spoonacular.com/food/products/{id}
+// https://api.spoonacular.com/food/ingredients/search
 
 
 var searchResultsEl = document.querySelector('#search-results');
@@ -22,6 +24,27 @@ var userSearch = document.querySelector('#user-search');
 var searchBtn = document.querySelector('#search-button');
 var searchHistory = document.querySelector('#search-history');
 var notFound = document.querySelector('#not-found');
+
+
+function getId(){
+    var ingredient = userSearch.value.trim();
+
+    var idApi =`https://api.spoonacular.com/food/ingredients/search?query=${ingredient}&apiKey=03919bc242a04398b67fc175ce89ad98`;
+    
+    fetch(idApi)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+            var id = data.results[0].id;
+            console.log(id);
+        })
+        
+
+}
+
+
 
 function getRecipe() {
     var foodItem = userSearch.value.trim();
@@ -43,8 +66,6 @@ function getRecipe() {
         })
         .then(function (data) {
             if (data.meals !== null) {
-                
-                console.log(data);
                 displayResults(data);
                 saveSearch(foodItem);
             } else {
@@ -56,6 +77,7 @@ function getRecipe() {
         .catch(function(err){
             console.log(err);
         })
+        getId();
 };
 
 function displayResults(data) {
