@@ -24,6 +24,7 @@ var userSearch = document.querySelector('#user-search');
 var searchBtn = document.querySelector('#search-button');
 var searchHistory = document.querySelector('#search-history');
 var notFound = document.querySelector('#not-found');
+var avgPrice = document.querySelector('#price');
 
 
 function getId(){
@@ -37,13 +38,11 @@ function getId(){
         })
         .then(function(data){
             var id = data.results[0].id;
-            getPrice(id);
+            getPrice(ingredient, id);
         })
-        
-
 }
 
-function getPrice(id){
+function getPrice(ingredient, id){
     var priceApi = `https://api.spoonacular.com/recipes/${id}/priceBreakdownWidget.json?apiKey=03919bc242a04398b67fc175ce89ad98`
 
     fetch(priceApi)
@@ -52,10 +51,19 @@ function getPrice(id){
         })
         .then(function(data){
             console.log(data);
-            var price = parseInt(data.totalCost) /100;
-            console.log(price);
-            
+            var price = parseInt(data.totalCostPerServing) /100;
+            displayPrice(ingredient, price);
         })
+}
+
+function displayPrice(ingredient, price) {
+    var priceEl = document.createElement('p');
+
+    priceEl.className = 'text-center';
+
+    priceEl.textContent = `The Average Price of ${ingredient} is: ${price}`;
+
+    avgPrice.append(priceEl);
 }
 
 function getRecipe() {
@@ -66,15 +74,11 @@ function getRecipe() {
     fetch(recipeApi)
         .then(function (response) {
             if (response.ok) {
-
                 return response.json();
             } else {
                 document.querySelector('.modal-button').click();
                 return;
             }
-
-
-
         })
         .then(function (data) {
             if (data.meals !== null) {
@@ -83,7 +87,6 @@ function getRecipe() {
             } else {
                 document.querySelector('.modal-button').click();
                 return;
-
             }
         })
         .catch(function(err){
@@ -93,16 +96,6 @@ function getRecipe() {
 };
 
 function displayResults(data) {
-    //     <div class="card" id="display-card" style="width: 18rem;">
-    //     <img src="..." class="card-img-top" alt="...">
-    //     <div class="card-body">
-    //       <h5 class="card-title">Card title</h5>
-    //       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    //       <a href="#" class="btn btn-primary">Go somewhere</a>
-    //       <h5 class="card-title">Price</h5>
-    //       <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    //     </div>
-    //   </div> 
     searchResultsEl.innerHTML = null;
 
     // so i had to change the article classs to card-body. which looking at it now is the same class for 
