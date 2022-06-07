@@ -25,6 +25,7 @@ var searchBtn = document.querySelector('#search-button');
 var searchHistory = document.querySelector('#search-history');
 var notFound = document.querySelector('#not-found');
 var avgPrice = document.querySelector('#price');
+var checkEl = document.querySelector('#flexCheckDefault');
 
 
 function getId(){
@@ -50,18 +51,23 @@ function getPrice(ingredient, id){
             return response.json();
         })
         .then(function(data){
-            console.log(data);
             var price = parseInt(data.totalCostPerServing) /100;
             displayPrice(ingredient, price);
         })
 }
 
 function displayPrice(ingredient, price) {
+    avgPrice.innerHTML = null;
+
     var priceEl = document.createElement('p');
 
     priceEl.className = 'text-center';
 
-    priceEl.textContent = `The Average Price of ${ingredient} is: ${price}`;
+    if (!price) {
+        priceEl.textContent = 'Sorry, price not found.';
+    } else {
+        priceEl.textContent = `The Average Price of ${ingredient} is: ${price}`;
+    }
 
     avgPrice.append(priceEl);
 }
@@ -82,8 +88,14 @@ function getRecipe() {
         })
         .then(function (data) {
             if (data.meals !== null) {
-                displayResults(data);
-                saveSearch(foodItem);
+                if (checkEl.checked) {
+                    getId();
+                    displayResults(data);
+                    saveSearch(foodItem);
+                } else {
+                    displayResults(data);
+                    saveSearch(foodItem);
+                }
             } else {
                 document.querySelector('.modal-button').click();
                 return;
@@ -92,7 +104,6 @@ function getRecipe() {
         .catch(function(err){
             console.log(err);
         })
-        getId();
 };
 
 function displayResults(data) {
