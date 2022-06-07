@@ -5,6 +5,10 @@
     --light-purple: #ada8be;
     --blue: #c6caed;
     --yellow: #f4ebbe;
+    --dark-yellow: #ccc5a0;
+    --orange: #d3a248;
+    --dark-purple: #501537;
+    --soft-green: #CCF5AC;
 }
 
 h1 {
@@ -20,10 +24,76 @@ body {
 .search-bar {
     position: sticky;
     top: 0;
-    /* background-color: var(--blue); */
     background-color: rgba(198, 202, 237, .8);
+    margin: 0 auto;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-top: 2px solid var(--dark-purple);
+    font-family: 'Indie Flower', cursive;
+    font-size: 20px;
+}
+
+.past-search {
+    background-color: var(--yellow);
+    border: none;
+    margin: 4px;
+    padding: 2px;
+    border-radius: 6px;
+}
+
+.past-search:hover {
+    background-color: var(--dark-yellow);
+}
+
+.clear-button {
+    background-color: var(--yellow);
+    border: none;
+    margin: 4px;
+    padding: 2px;
+    border-radius: 6px;
+}
+
+.clear-button:hover {
+    background-color: var(--orange);
+}
+
+#search-button {
+    background-color: var(--dark-purple);
+    color: var(--yellow);
+    border-radius: 6px;
+    border: none;
+    padding: 6px;
+}
+
+#search-button:hover {
+    transform: scale(1.1);
+    transition: all 250ms ease;
 }
 
 .modal-button {
     display: none;
+}
+
+h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 50px;
+    color: var(--dark-purple);
+}
+
+.card-title {
+    font-family: 'Indie Flower', cursive;
+    font-size: 30px;
+    text-decoration: none;
+    color: var(--dark-purple);
+}
+
+#search-results img {
+    width: 75%;
+    border: 2px solid var(--blue);
+    border-radius: 8px;
+    padding: 8px;
+}
+
+#price {
+    font-family: 'Indie Flower', cursive;
 }
