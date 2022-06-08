@@ -8,6 +8,7 @@
     --dark-yellow: #ccc5a0;
     --orange: #d3a248;
     --dark-purple: #501537;
+    --med-purple: #7a4966;
     --soft-green: #CCF5AC;
 }
 
@@ -16,6 +17,7 @@ h1 {
     font-size: 100px;
     color: var(--yellow);
     transform: translate(0, -20%);
+    text-shadow: 6px 6px 6px var(--dark-purple);
 }
 
 body {
@@ -33,6 +35,8 @@ body {
     font-family: 'Indie Flower', cursive;
     font-size: 20px;
     color: var(--dark-purple);
+    z-index: 1;
+    box-shadow: 15px 15px 10px rgba(122, 73, 102, 0.5);
 }
 
 .logo {
@@ -48,6 +52,7 @@ body {
     margin: 4px;
     padding: 2px;
     border-radius: 6px;
+    border-style: outset;
 }
 
 .past-search:hover {
@@ -61,6 +66,7 @@ body {
     margin: 4px;
     padding: 2px;
     border-radius: 6px;
+    border-style: outset;
 }
 
 .clear-button:hover {
@@ -86,8 +92,10 @@ body {
 
 h2 {
     font-family: 'Dancing Script', cursive;
-    font-size: 50px;
+    font-size: 70px;
     color: var(--dark-purple);
+    text-shadow: 2px 2px 6px var(--dark-yellow);
+    padding-top: 1%;
 }
 
 .card-title {
@@ -106,14 +114,15 @@ h2 {
     border: 2px solid var(--blue);
     border-radius: 8px;
     padding: 8px;
+    box-shadow: 6px 6px 6px var(--dark-purple);
 }
 
 article {
     position: relative;
-    z-index: -1;
+    z-index: 0;
 }
 
-#search-results article::after {
+#search-results article:nth-child(4n+2):after, #search-results article:nth-child(odd):after {
     content: '\2727';
     width: 20px;
     height: 20px;
@@ -124,6 +133,10 @@ article {
     top: 50%;
     transform: translate(-60%, -50%);
     transform: scale(1.5);
+}
+
+#search-results article:last-child:after {
+    content: '';
 }
 
 .recipe-img {
