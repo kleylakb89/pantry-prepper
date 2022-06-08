@@ -94,6 +94,8 @@ function getRecipe() {
 
     var recipeApi = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${foodItem}`;
 
+    randomState.style.display = 'none';
+
     fetch(recipeApi)
         .then(function (response) {
             if (response.ok) {
@@ -307,6 +309,8 @@ searchHistory.addEventListener('click', function (event) {
     if (foodItem === 'Clear History') {
         searchHistory.innerHTML = null;
         localStorage.clear();
+        resultsState.style.display = 'none';
+        randomState.style.display = 'block';
         return;
     }
 
