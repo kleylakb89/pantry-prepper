@@ -96,6 +96,8 @@ function getRecipe() {
 
     randomState.style.display = 'none';
 
+    resultsState.style.display = 'block';
+
     fetch(recipeApi)
         .then(function (response) {
             if (response.ok) {
@@ -263,8 +265,9 @@ function displayHistory() {
 }
 
 function init() {
-    // displayHistory();
+    displayHistory();
     carouselImage();
+    resultsState.style.display = 'none'
     }
 
 
