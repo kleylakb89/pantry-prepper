@@ -145,20 +145,24 @@ function displayResults(data) {
 
         imgEl.src = data.meals[i].strMealThumb;
         titleEl.textContent = data.meals[i].strMeal;
-        var longTitle = document.createElement('a');
-        longTitle.textContent= '';
-        longTitle.className = 'card-title';
-        if(titleEl.textContent.length > 20){
-            for(var i = 0; i <21; i++){
-                longTitle.textContent = longTitle.textContent + titleEl.textContent[i];
-            }
-            longTitle.textContent = longTitle.textContent + '...';
-            longTitle.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
-            cardEl.append(longTitle);
-        } else {
-            cardEl.append(titleEl);
-        }
-        console.log(longTitle);
+
+        // var longTitle = document.createElement('a');
+        // longTitle.textContent= '';
+        // longTitle.className = 'card-title';
+        
+        // if(titleEl.textContent.length > 20){
+        //     for(var i = 0; i < 21; i++){
+        //         longTitle.textContent = longTitle.textContent + titleEl.textContent[i];
+        //     }
+        //     longTitle.textContent = longTitle.textContent + '...';
+        //     longTitle.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
+        //     cardEl.append(longTitle);
+        // } else {
+        //     cardEl.append(titleEl);
+        // }
+
+        cardEl.append(titleEl);
+
         titleEl.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
 
         articleEl.append(cardEl, imgEl);
@@ -176,6 +180,8 @@ function carouselImage(){
     var slide3Title = document.querySelector('#slide3Title');
     var imgApi = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
+    // titleEl.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
+
     fetch(imgApi)
     .then(function (response) {
         if (response.ok) {
@@ -186,9 +192,10 @@ function carouselImage(){
         }
     })
     .then(function (data) {
-        console.log(data);
         slide1El.src = data.meals[0].strMealThumb;
         slide1Title.textContent = data.meals[0].strMeal;
+        var idNum = data.meals[0].idMeal;
+        slide1Title.href = `https://www.themealdb.com/meal/${idNum}-${slide1Title.textContent}`
     });
     fetch(imgApi)
     .then(function (response) {
@@ -200,9 +207,10 @@ function carouselImage(){
         }
     })
     .then(function (data) {
-        console.log(data);
         slide2El.src = data.meals[0].strMealThumb;
         slide2Title.textContent = data.meals[0].strMeal;
+        var idNum = data.meals[0].idMeal;
+        slide2Title.href = `https://www.themealdb.com/meal/${idNum}-${slide2Title.textContent}`
     });
     fetch(imgApi)
     .then(function (response) {
@@ -214,11 +222,12 @@ function carouselImage(){
         }
     })
     .then(function (data) {
-        console.log(data);
         slide3El.src = data.meals[0].strMealThumb;
         slide3Title.textContent = data.meals[0].strMeal;
+        var idNum = data.meals[0].idMeal;
+        slide3Title.href = `https://www.themealdb.com/meal/${idNum}-${slide3Title.textContent}`
     });
-
+    
 }
 
 function saveSearch(foodItem) {
@@ -254,6 +263,34 @@ function init() {
     // displayHistory();
     carouselImage();
 }
+
+function indexSearch(event) {
+    event.preventDefault();
+    var foodItem = userSearch.value.trim();
+
+    if(searchResultsEl) {
+        getRecipe();
+    } else {
+        location.replace('./search.html')
+    }
+
+}
+
+// var handleSearch = function(event) {
+//     event.preventDefault();
+//     var q = qInput.value.trim();
+//     var format = formatInput.value;
+
+//     if (!q) return;
+
+//     if (searchResultsEl) {
+//         getSearchResults(q, format);
+//     } else {
+//         location.replace('./search-results.html?q=' + q + '&format=' + format);
+//     }
+// };
+
+// searchForm.addEventListener('submit', handleSearch);
 
 
 

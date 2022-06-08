@@ -172,9 +172,14 @@ article {
     border-radius: 8px;
     box-shadow: 6px 6px 6px var(--dark-purple);
     margin-bottom: 18px;
+    text-decoration: none;
+    font-family: 'Indie Flower', cursive;
+    font-size: 30px;
+}
 
-
-    /* border: 3px solid var(--yellow); */
+#slide1Title:hover, #slide2Title:hover, #slide3Title:hover {
+    transform: scale(1.1);
+    transition: all 250ms ease;
 }
 
 h6{
@@ -191,11 +196,6 @@ h3{
     /* text-shadow: 2px 2px 6px var(--dark-yellow); */
 }
 
-
-/* 
-.arrow-button{
-    color: red;
-} */
 
 /* @media screen and (max-width: 800px) {
     .logo {
