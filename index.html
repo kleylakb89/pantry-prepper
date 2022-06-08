@@ -1,15 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-
+    <title>Pantry Prepper</title>
+    <meta name="description" content="A resource for researching food prices and recipes based on your pantry.">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+        rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+        crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body>
 
+    <header class="row text-center">
+        <img src="./assets/images/pantry-prepper-logo.png" alt="pantry-prepper-logo" class="logo">
+        <h1 class="col-12 p-2">Welcome to Pantry Prepper!</h1>
+    </header>
+
+    <main>
+        <aside class="search-bar">
+            <div class="input-group col-12 col-md-6 col-lg-4 m-2 p-3 d-flex align-items-center justify-content-center">
+                <div class="form-outline d-flex justify-content-space-around">
+                    <input type="search" id="user-search" class="form-control" />
+                    <label class="form-label" for="form1"></label>
+                </div>
+                <button type="button" class="m-1" id="search-button">
+                    Search
+                </button>
+            </div>
+            <div class="form-check d-flex align-items-center justify-content-center">
+                <input class="form-check-input col-12 col-md-6 col-lg-4 m-2" type="checkbox" value=""
+                    id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Show Prices In Search
+                </label>
+            </div>
+            <section class="d-flex align-items-center flex-column justify-content-space-around m-4" id="search-history">
+            </section>
+        </aside>
+        <section class="row">
+            <h6 class="text-center" >Feeling Spicy?</h6>
+            <h3 class="text-center">Try These Random Recipes</h3>
+            <div class="d-flex justify-content-space-between text-center">
+            
+                <h5 id="slide1Title">First slide label</h5>
+                <h5 id="slide2Title">Second slide label</h5>
+                <h5 id="slide3Title">Third slide label</h5>
+            </div>
+            <div class="d-flex justify-content-space-between">
+                <img id="slide1" src="" class="w-25" alt="...">
+                <img id="slide2" src="" class="w-25" alt="...">
+                <img id="slide3" src="" class="w-25" alt="...">
+                
+            </div>
+
+        </section>
+
+
+
+    </main>
 
 
 
@@ -26,8 +84,9 @@
 
 
 
-    
-    <script src="assets/script.js"></script>
+
+    <script src="assets/js/script.js"></script>
 
 </body>
+
 </html>

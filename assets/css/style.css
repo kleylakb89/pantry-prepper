@@ -98,14 +98,14 @@ h2 {
     padding-top: 1%;
 }
 
-.card-title, .long-title {
+.card-title {
     font-family: 'Indie Flower', cursive;
     font-size: 30px;
     text-decoration: none;
     color: var(--dark-purple);
 }
 
-.card-title:hover, .long-title:hover {
+.card-title:hover {
     color: var(--blue)
 }
 
@@ -152,6 +152,50 @@ article {
 #price span {
     color: var(--yellow);
 }
+
+#slide1, #slide2, #slide3 {
+    margin: auto;
+    border-radius: 8px;
+    border: 4px solid var(--dark-purple);
+    padding: 5px;
+    margin-bottom: 25px;
+    box-shadow: 6px 6px 6px var(--dark-purple);
+   
+}
+
+#slide1Title, #slide2Title, #slide3Title {
+    background-color: var(--blue);
+    width: 25%;
+    padding: 1%;
+    margin: auto;
+    color: var(--dark-purple);
+    border-radius: 8px;
+    box-shadow: 6px 6px 6px var(--dark-purple);
+    margin-bottom: 18px;
+
+
+    /* border: 3px solid var(--yellow); */
+}
+
+h6{
+    font-family: 'Indie Flower', cursive;
+    color: var(--yellow);
+    text-shadow: 2px 2px 6px var(--dark-purple);
+} 
+
+h3{
+    font-family: 'Dancing Script', cursive;
+    font-size: 55px;
+    color: var(--dark-purple);
+    padding-bottom: 3%;
+    /* text-shadow: 2px 2px 6px var(--dark-yellow); */
+}
+
+
+/* 
+.arrow-button{
+    color: red;
+} */
 
 /* @media screen and (max-width: 800px) {
     .logo {

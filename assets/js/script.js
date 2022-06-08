@@ -13,9 +13,6 @@
 //*Challenges* - workflow, element postioning, appending modal when users search is not found.!!!!! (thank you, Sashaaaaaa)
 
 // updated to do list:
-// add shadows/depth **
-// card spacing too big **
-// card title text too long, causing alignment issues. **
 // index .html page all of it **
 // clean up code and add comments **
 // read me **
@@ -170,8 +167,57 @@ function displayResults(data) {
 
     displayHistory();
 }
-// https://www.themealdb.com/meal/53060-Burek-Recipe
-function recipeLink() {
+function carouselImage(){
+    var slide1El = document.querySelector('#slide1');
+    var slide2El = document.querySelector('#slide2');
+    var slide3El = document.querySelector('#slide3');
+    var slide1Title = document.querySelector('#slide1Title');
+    var slide2Title = document.querySelector('#slide2Title');
+    var slide3Title = document.querySelector('#slide3Title');
+    var imgApi = 'https://www.themealdb.com/api/json/v1/1/random.php';
+
+    fetch(imgApi)
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            slide1El.alt = 'image not found';
+            return;
+        }
+    })
+    .then(function (data) {
+        console.log(data);
+        slide1El.src = data.meals[0].strMealThumb;
+        slide1Title.textContent = data.meals[0].strMeal;
+    });
+    fetch(imgApi)
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            slide2El.alt = 'image not found';
+            return;
+        }
+    })
+    .then(function (data) {
+        console.log(data);
+        slide2El.src = data.meals[0].strMealThumb;
+        slide2Title.textContent = data.meals[0].strMeal;
+    });
+    fetch(imgApi)
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+        } else {
+            slide3El.alt = 'image not found';
+            return;
+        }
+    })
+    .then(function (data) {
+        console.log(data);
+        slide3El.src = data.meals[0].strMealThumb;
+        slide3Title.textContent = data.meals[0].strMeal;
+    });
 
 }
 
@@ -205,7 +251,8 @@ function displayHistory() {
 }
 
 function init() {
-    displayHistory();
+    // displayHistory();
+    carouselImage();
 }
 
 
