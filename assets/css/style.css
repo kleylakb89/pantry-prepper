@@ -98,14 +98,14 @@ h2 {
     padding-top: 1%;
 }
 
-.card-title {
+.card-title, .long-title {
     font-family: 'Indie Flower', cursive;
     font-size: 30px;
     text-decoration: none;
     color: var(--dark-purple);
 }
 
-.card-title:hover {
+.card-title:hover, .long-title:hover {
     color: var(--blue)
 }
 

@@ -148,9 +148,22 @@ function displayResults(data) {
 
         imgEl.src = data.meals[i].strMealThumb;
         titleEl.textContent = data.meals[i].strMeal;
+        var longTitle = document.createElement('a');
+        longTitle.textContent= '';
+        longTitle.className = 'card-title';
+        if(titleEl.textContent.length > 20){
+            for(var i = 0; i <21; i++){
+                longTitle.textContent = longTitle.textContent + titleEl.textContent[i];
+            }
+            longTitle.textContent = longTitle.textContent + '...';
+            longTitle.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
+            cardEl.append(longTitle);
+        } else {
+            cardEl.append(titleEl);
+        }
+        console.log(longTitle);
         titleEl.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
 
-        cardEl.append(titleEl);
         articleEl.append(cardEl, imgEl);
         searchResultsEl.append(articleEl);
     }
