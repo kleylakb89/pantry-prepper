@@ -39,7 +39,8 @@ var searchHistory = document.querySelector('#search-history');
 var notFound = document.querySelector('#not-found');
 var avgPrice = document.querySelector('#price');
 var checkEl = document.querySelector('#flexCheckDefault');
-
+var randomState= document.querySelector('#random-state');
+var resultsState = document.querySelector('#results-state');
 
 function getId(foodItem){
     var ingredient = foodItem;
@@ -262,11 +263,13 @@ function displayHistory() {
 function init() {
     // displayHistory();
     carouselImage();
-}
+    }
+
 
 function indexSearch(event) {
     event.preventDefault();
     var foodItem = userSearch.value.trim();
+    
 
     if(searchResultsEl) {
         getRecipe();
