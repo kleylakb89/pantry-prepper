@@ -33,6 +33,11 @@ body {
     font-size: 20px;
 }
 
+.logo {
+    width: 10%;
+    vertical-align: top;
+}
+
 .past-search {
     background-color: var(--yellow);
     border: none;
