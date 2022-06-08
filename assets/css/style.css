@@ -15,6 +15,7 @@ h1 {
     font-family: 'Dancing Script', cursive;
     font-size: 100px;
     color: var(--yellow);
+    transform: translate(0, -20%);
 }
 
 body {
@@ -31,14 +32,17 @@ body {
     border-top: 2px solid var(--dark-purple);
     font-family: 'Indie Flower', cursive;
     font-size: 20px;
+    color: var(--dark-purple);
 }
 
 .logo {
     width: 10%;
-    vertical-align: top;
+    transform: translate(70%, 15%);
+    margin: 0 0 -5% 0;
 }
 
 .past-search {
+    color: var(--brown);
     background-color: var(--yellow);
     border: none;
     margin: 4px;
@@ -51,6 +55,7 @@ body {
 }
 
 .clear-button {
+    color: var(--brown);
     background-color: var(--yellow);
     border: none;
     margin: 4px;
@@ -92,7 +97,7 @@ h2 {
     color: var(--dark-purple);
 }
 
-.card-title:hover{
+.card-title:hover {
     color: var(--blue)
 }
 
@@ -103,7 +108,25 @@ h2 {
     padding: 8px;
 }
 
-.recipe-img{
+article {
+    position: relative;
+    z-index: -1;
+}
+
+#search-results article::after {
+    content: '\2727';
+    width: 20px;
+    height: 20px;
+    color: var(--dark-purple);
+    display: inline-block;
+    position: absolute;
+    left: 98%;
+    top: 50%;
+    transform: translate(-60%, -50%);
+    transform: scale(1.5);
+}
+
+.recipe-img {
     border-radius: 8px;
 }
 
@@ -113,6 +136,12 @@ h2 {
     color: var(--blue);
 }
 
-#price span{
+#price span {
     color: var(--yellow);
 }
+
+/* @media screen and (max-width: 800px) {
+    .logo {
+        display: block;
+    }
+} */

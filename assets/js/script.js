@@ -13,16 +13,18 @@
 //*Challenges* - workflow, element postioning, appending modal when users search is not found.!!!!! (thank you, Sashaaaaaa)
 
 // updated to do list:
-// powerpoint
-// img corners rounded
-// index .html page all of it
-// additional color changes to text
-// changing price color to refelct a high price or a low price
-// clean up code and add comments
-// read me
+// add shadows/depth **
+// card spacing too big **
+// card title text too long, causing alignment issues. **
+// index .html page all of it **
+// clean up code and add comments **
+// read me **
+// powerpoint **
 // portfolio questions
-// card title text too long, causing alignment issues.
-// card spacing too big
+// img corners rounded
+// changing price color to refelct a high price or a low price
+// scatter search history buttons
+// media queries for responsive layout
 
 
 
