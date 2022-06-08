@@ -186,6 +186,7 @@ h6{
     font-family: 'Indie Flower', cursive;
     color: var(--yellow);
     text-shadow: 2px 2px 6px var(--dark-purple);
+    padding-top: 20px;
 } 
 
 h3{
