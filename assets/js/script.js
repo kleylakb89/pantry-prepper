@@ -250,7 +250,6 @@ function displayHistory() {
         searchHistory.append(historyBtn);
     }
     var clearBtn = document.createElement('button');
-    // made it red
     clearBtn.className = 'clear-button col-12 col-md-6 col-lg-3'
     clearBtn.textContent = 'Clear History';
     searchHistory.append(clearBtn);
