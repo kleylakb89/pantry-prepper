@@ -5,36 +5,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantry Prepper Results</title>
+    <!-- added title and meta description -->
+    <title>Pantry Prepper</title>
     <meta name="description" content="A resource for researching food prices and recipes based on your pantry.">
+
+    <!-- importing bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
         rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
         crossorigin="anonymous">
+
+    <!-- importing Google Fonts and linking css files -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
 <body>
+    <!-- header with logo -->
     <header class="row text-center">
-        <img src="./assets/images/pantry-prepper-logo.png" alt="pantry-prepper-logo" class="logo d-block d-sm-block d-md-none d-lg-block">
+        <img src="./assets/images/pantry-prepper-logo.png" alt="pantry-prepper-logo" class="logo d-block d-md-none d-xxl-block col-12 col-xxl-3">
         <h1 class="col-12 p-2 d-none d-xs-none d-md-block">Welcome to Pantry Prepper!</h1>
     </header>
+
     <main class="row">
+        <!-- search bar with form and seach button -->
         <aside class="search-bar">
             <div class="input-group col-12 col-md-6 col-lg-4 m-2 p-3 d-flex align-items-center justify-content-center">
                 <div class="form-outline d-flex justify-content-space-around">
                     <input type="search" id="user-search" class="form-control" />
                     <label class="form-label" for="form1"></label>
                 </div>
+
                 <button type="button" class="m-1" id="search-button">
                     Search
                 </button>
             </div>
+            <!-- checkbox -->
             <div class="form-check d-flex align-items-center justify-content-center">
                 <input class="form-check-input col-12 col-md-6 col-lg-4 m-2" type="checkbox" value=""
                     id="flexCheckDefault">
@@ -42,12 +54,16 @@
                     Show Prices In Search
                 </label>
             </div>
-            <section class="d-flex align-items-center flex-column justify-content-space-around m-4" id="search-history">
-            </section>
+            <!-- section for dynamically populating search history -->
+            <section class="d-flex align-items-center flex-column justify-content-space-around m-4" id="search-history"></section>
         </aside>
+
+        <!-- modal for invalid searches -->
         <div>
+            <!-- hidden button -->
             <button type="button" class="btn btn-primary modal-button" data-bs-toggle="modal"
                 data-bs-target="#exampleModal"></button>
+
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog">
@@ -66,37 +82,38 @@
                 </div>
             </div>
         </div>
-        <!-- had to make this have a class of card- group instead of card and centered text bang bang -->
+
+        <!-- section for dynamically populating search results -->
         <section class="flex-row" id="results-state">
             <h2 class="col-12 m-2 text-center">Search Results</h2>
             <div id="price"></div>
             <div class="col-12 card-group m-1 text-center align-items-center" id="search-results"></div>
         </section>
+
+        <!-- section for random recipe cards only shown on landing page -->
         <section class="row" id="random-state">
             <h6 class="text-center" >Feeling Spicy?</h6>
             <h3 class="text-center">Try These Random Recipes</h3>
+
             <div class="d-flex justify-content-space-between text-center">
                 <a href="" target="_blank" id="slide1Title"></a>
                 <a href="" target="_blank" id="slide2Title"></a>
                 <a href="" target="_blank" id="slide3Title"></a>
-                <!-- <h5 id="slide1Title">First slide label</h5>
-                <h5 id="slide2Title">Second slide label</h5>
-                <h5 id="slide3Title">Third slide label</h5> -->
             </div>
+
             <div class="d-flex justify-content-space-between">
                 <img id="slide1" src="" class="w-25" alt="...">
                 <img id="slide2" src="" class="w-25" alt="...">
                 <img id="slide3" src="" class="w-25" alt="...">
                 
             </div>
-
         </section>
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <!-- linked bootstrap plugin and javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="./assets/js/script.js"></script>
+
 </body>
 
 </html>

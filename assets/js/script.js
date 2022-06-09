@@ -1,37 +1,4 @@
-// format html file 
-// query select elements
-// define variables for searched elements
-// function for price fetch requests.. add catch and prevent default 
-// function for recipe fetch requests.. add catch and prevent default 
-// init function
-// event listeners to run functions
-// moment for expiration dates
-// local storage to save searched ingredients
-// modal for null searches
-// no results found for bad searches
-// running total of prices in local storage
-//*Challenges* - workflow, element postioning, appending modal when users search is not found.!!!!! (thank you, Sashaaaaaa)
-
-// updated to do list:
-// index .html page all of it **
-// clean up code and add comments **
-// read me **
-// powerpoint **
-// portfolio questions
-// img corners rounded
-// changing price color to refelct a high price or a low price
-// scatter search history buttons
-// media queries for responsive layout
-
-
-
-//https://www.themealdb.com/api.php without format
-// http://www.themealdb.com/api/json/v1/1/filter.php?i=chicken_breast with format
-// https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata by name
-// https://api.spoonacular.com/food/products/{id}
-// https://api.spoonacular.com/food/ingredients/search
-
-//declaring our global variables
+//query selecting our global elements
 var searchResultsEl = document.querySelector('#search-results');
 var userSearch = document.querySelector('#user-search');
 var searchBtn = document.querySelector('#search-button');
@@ -42,7 +9,7 @@ var checkEl = document.querySelector('#flexCheckDefault');
 var randomState = document.querySelector('#random-state');
 var resultsState = document.querySelector('#results-state');
 
-//function for getting the ingredient results of the food item searched
+//function for fetching the id results of the food item searched, to be used in getPrice
 function getId(foodItem) {
     var ingredient = foodItem;
 
@@ -93,42 +60,49 @@ function displayPrice(ingredient, price) {
     avgPrice.append(priceEl);
 }
 
-//this will be the function that gets the recipe for the food that the user searches for
+// this is the function that fetches the recipe for the food that the user searches for
 function getRecipe() {
     var foodItem = userSearch.value.trim();
 
     var recipeApi = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${foodItem}`;
 
-    randomState.style.display = 'none';
-
-    resultsState.style.display = 'block';
-
+    
     fetch(recipeApi)
-        .then(function (response) {
-            if (response.ok) {
-                return response.json();
-                //if there is no recipe for what is typed in then the user will get this modal message
-            } else {
-                document.querySelector('.modal-button').click();
-                return;
-            }
-        })
-        .then(function (data) {
-            if (data.meals !== null) {
-                if (checkEl.checked) {
+    .then(function (response) {
+        if (response.ok) {
+            return response.json();
+            //if there is no recipe for what is typed in then the user will get this modal message
+        } else {
+            document.querySelector('.modal-button').click();
+            return;
+        }
+    })
+    .then(function (data) {
+        // if data.meals not equal to null and checkbox is checked: runs functions for fetching price, displays results, and saves search to local storage
+        if (data.meals !== null) {
+            if (checkEl.checked) {
+                    // changes the display states so the random recipes disappear and the results display
+                    randomState.style.display = 'none';
+                    resultsState.style.display = 'block';
                     getId(foodItem);
                     displayResults(data);
                     saveSearch(foodItem);
+                    // if checkbox is not checked, displays recipe results and saves search to local storage
                 } else {
+                    // changes the display states so the random recipes disappear and the results display
+                    randomState.style.display = 'none';
+                    resultsState.style.display = 'block';
                     displayResults(data);
                     saveSearch(foodItem);
                 }
+            //if there is no recipe for what is typed in then the user will get this modal message
             } else {
                 document.querySelector('.modal-button').click();
                 return;
             }
         })
         .catch(function (err) {
+            console.log(err);
         })
 };
 
@@ -139,7 +113,7 @@ function displayResults(data) {
 
     for (var i = 0; i < data.meals.length; i++) {
         var articleEl = document.createElement('article');
-        articleEl.className = 'card-body display-card w-25 p-4';
+        articleEl.className = 'card-body display-card p-4';
 
         var imgEl = document.createElement('img');
         imgEl.className = 'card-img-top m-1 recipe-img';
@@ -147,26 +121,25 @@ function displayResults(data) {
         var cardEl = document.createElement('div');
         cardEl.className = 'card-body';
 
+        // title of meal is a hyperlink that leads to the full recipe
         var titleEl = document.createElement('a');
         titleEl.className = 'card-title';
+        titleEl.setAttribute('target', '_blank');
 
         var idNum = data.meals[i].idMeal;
 
         imgEl.src = data.meals[i].strMealThumb;
         titleEl.textContent = data.meals[i].strMeal;
-
-        cardEl.append(titleEl);
-
         titleEl.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
-
+        
+        cardEl.append(titleEl);
         articleEl.append(cardEl, imgEl);
         searchResultsEl.append(articleEl);
     }
-
     displayHistory();
 }
 
-//pushing images from themealdb API 
+// fetching images and titles from themealdb API 
 function carouselImage() {
     var slide1El = document.querySelector('#slide1');
     var slide2El = document.querySelector('#slide2');
@@ -176,9 +149,7 @@ function carouselImage() {
     var slide3Title = document.querySelector('#slide3Title');
     var imgApi = 'https://www.themealdb.com/api/json/v1/1/random.php';
 
-    //referencing one of the formatted pages of one of the API's we used
-    // titleEl.href = `https://www.themealdb.com/meal/${idNum}-${titleEl.textContent}`
-
+    // three seperate fetches allow three random recipes to populate
     fetch(imgApi)
         .then(function (response) {
             if (response.ok) {
@@ -194,6 +165,7 @@ function carouselImage() {
             var idNum = data.meals[0].idMeal;
             slide1Title.href = `https://www.themealdb.com/meal/${idNum}-${slide1Title.textContent}`
         });
+
     fetch(imgApi)
         .then(function (response) {
             if (response.ok) {
@@ -209,6 +181,7 @@ function carouselImage() {
             var idNum = data.meals[0].idMeal;
             slide2Title.href = `https://www.themealdb.com/meal/${idNum}-${slide2Title.textContent}`
         });
+
     fetch(imgApi)
         .then(function (response) {
             if (response.ok) {
@@ -226,7 +199,8 @@ function carouselImage() {
         });
 
 }
-//this function is saving the users search history into local storage
+
+//this function is saving the user's search history into local storage
 function saveSearch(foodItem) {
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
     if (!recentSearch.includes(foodItem)) {
@@ -236,6 +210,7 @@ function saveSearch(foodItem) {
     localStorage.setItem('foodHistory', JSON.stringify(recentSearch));
     displayHistory();
 }
+
 //this will display the saved search history from local storage onto the page as well as display a clear search history button
 function displayHistory() {
     var recentSearch = JSON.parse(localStorage.getItem('foodHistory')) || [];
@@ -254,10 +229,8 @@ function displayHistory() {
     clearBtn.textContent = 'Clear History';
     searchHistory.append(clearBtn);
 }
-//initial function that will start us at the random-state which is our homepage and hides the results state which
-//will only display when the user searches
+//initial function that will start us at the random-state which is our homepage and hides the results state which will only display when the user searches
 function init() {
-    displayHistory();
     carouselImage();
     resultsState.style.display = 'none'
 }
@@ -271,7 +244,8 @@ searchHistory.addEventListener('click', function (event) {
     var button = event.target;
     var foodItem = button.textContent;
     var recipeApi = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${foodItem}`;
-//if the user clicks the clear history button then the user will be taken back to the homepage with random recipes
+
+    //if the user clicks the clear history button then the user will be taken back to the homepage with random recipes
     if (foodItem === 'Clear History') {
         searchHistory.innerHTML = null;
         localStorage.clear();
@@ -279,8 +253,8 @@ searchHistory.addEventListener('click', function (event) {
         randomState.style.display = 'block';
         return;
     }
-//if the user clicks on any of the previously searched recipes displayed on the screen then they will be brought back to 
-//the same screen that would show up if they would have searched it in the search bar.
+
+    //if the user clicks on any of the previously searched recipes displayed on the screen then they will be brought back to the same screen that would show up if they would have searched it in the search bar.
     fetch(recipeApi)
         .then(function (response) {
             return response.json();
@@ -293,5 +267,5 @@ searchHistory.addEventListener('click', function (event) {
         })
 })
 
-
+// runs the init function when page loads
 init();

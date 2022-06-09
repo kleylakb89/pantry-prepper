@@ -1,17 +1,15 @@
+/* declaring our color variables at the root */
 :root {
-    --green: #4a5240;
     --brown: #6f5e5c;
     --purple: #a28497;
-    --light-purple: #ada8be;
     --blue: #c6caed;
     --yellow: #f4ebbe;
     --dark-yellow: #ccc5a0;
     --orange: #d3a248;
     --dark-purple: #501537;
-    --med-purple: #7a4966;
-    --soft-green: #CCF5AC;
 }
 
+/* styling h1 to our google font and position */
 h1 {
     font-family: 'Dancing Script', cursive;
     font-size: 100px;
@@ -20,10 +18,12 @@ h1 {
     text-shadow: 6px 6px 6px var(--dark-purple);
 }
 
+/* body background color */
 body {
     background-color: var(--purple);
 }
 
+/* creates the "bubble" around the search bar and saved searches */
 .search-bar {
     position: sticky;
     top: 0;
@@ -39,13 +39,15 @@ body {
     box-shadow: 15px 15px 10px rgba(122, 73, 102, 0.5);
 }
 
+/* sets properties of logo */
 .logo {
     width: 10%;
     transform: translate(70%, 15%);
     margin: 0 0 -5% 0;
 }
 
-.past-search {
+/* saved searches and clear button properties */
+.past-search, .clear-button {
     color: var(--brown);
     background-color: var(--yellow);
     border: none;
@@ -55,24 +57,16 @@ body {
     border-style: outset;
 }
 
+/* pseudo-classes for saved searches and clear button */
 .past-search:hover {
     background-color: var(--dark-yellow);
-}
-
-.clear-button {
-    color: var(--brown);
-    background-color: var(--yellow);
-    border: none;
-    margin: 4px;
-    padding: 2px;
-    border-radius: 6px;
-    border-style: outset;
 }
 
 .clear-button:hover {
     background-color: var(--orange);
 }
 
+/* search button properties */
 #search-button {
     background-color: var(--dark-purple);
     color: var(--yellow);
@@ -81,15 +75,18 @@ body {
     padding: 6px;
 }
 
+/* search button pseudo-class */
 #search-button:hover {
     transform: scale(1.1);
     transition: all 250ms ease;
 }
 
+/* setting the modal button to hide */
 .modal-button {
     display: none;
 }
 
+/* "search results" properties */
 h2 {
     font-family: 'Dancing Script', cursive;
     font-size: 70px;
@@ -98,6 +95,7 @@ h2 {
     padding-top: 1%;
 }
 
+/* card title properties and pseudo-class */
 .card-title {
     font-family: 'Indie Flower', cursive;
     font-size: 30px;
@@ -109,6 +107,7 @@ h2 {
     color: var(--blue)
 }
 
+/* images in search results properties */
 #search-results img {
     width: 75%;
     border: 2px solid var(--blue);
@@ -117,11 +116,14 @@ h2 {
     box-shadow: 6px 6px 6px var(--dark-purple);
 }
 
+/* setting search results cards size and position */
 article {
     position: relative;
     z-index: 0;
+    width: 25%;
 }
 
+/* creating pseudo-element and utilizing nthchild to appear in desired places */
 #search-results article:nth-child(4n+2):after, #search-results article:nth-child(odd):after {
     content: '\2727';
     width: 20px;
@@ -135,24 +137,24 @@ article {
     transform: scale(1.5);
 }
 
+/* keeping pseudo-element from displaying after the last article */
 #search-results article:last-child:after {
     content: '';
 }
 
-.recipe-img {
-    border-radius: 8px;
-}
-
+/* setting properties of price text */
 #price {
     font-family: 'Indie Flower', cursive;
     font-size: 25px;
     color: var(--blue);
 }
 
+/* the dollar sign and numbers will be a different color */
 #price span {
     color: var(--yellow);
 }
 
+/* setting properties of random recipes on landing page */
 #slide1, #slide2, #slide3 {
     margin: auto;
     border-radius: 8px;
@@ -163,6 +165,7 @@ article {
    
 }
 
+/* setting properties of random recipe titles on landing page */
 #slide1Title, #slide2Title, #slide3Title {
     background-color: var(--blue);
     width: 25%;
@@ -177,29 +180,55 @@ article {
     font-size: 30px;
 }
 
+/* hover states for recipe titles */
 #slide1Title:hover, #slide2Title:hover, #slide3Title:hover {
     transform: scale(1.1);
     transition: all 250ms ease;
 }
 
-h6{
+/* "feeling spicy?" text properties */
+h6 {
     font-family: 'Indie Flower', cursive;
     color: var(--yellow);
     text-shadow: 2px 2px 6px var(--dark-purple);
     padding-top: 20px;
 } 
 
-h3{
+/* "try these random recipes" text properties */
+h3 {
     font-family: 'Dancing Script', cursive;
     font-size: 55px;
     color: var(--dark-purple);
     padding-bottom: 3%;
-    /* text-shadow: 2px 2px 6px var(--dark-yellow); */
 }
 
-
-/* @media screen and (max-width: 800px) {
+/* media queries for resized pages */
+@media screen and (max-width: 800px) {
+    /* logo takes center of top of screen on small displays */
     .logo {
-        display: block;
+        margin: 0 auto;
+        width: 20%;
+        transform: translate(0, 0);
     }
-} */
+    /* articles center and resize larger */
+    #search-results article {
+        margin: auto;
+        width: 100%;
+    }
+    /* pseudo-elements no longer display */
+    #search-results article:nth-child(4n+2):after, #search-results article:nth-child(odd):after {
+       display: none;
+    }
+}
+
+@media screen and (max-width: 1400px) {
+    /* h1 title gets a margin and centers */
+    h1 {
+        margin: 10px auto;
+        transform: translate(0, 0);
+    }
+    /* search history buttons shrink */
+    .past-search, .clear-button {
+        width: 30%;
+    }
+}
