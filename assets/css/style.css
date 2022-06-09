@@ -32,6 +32,7 @@ body {
     border-bottom-left-radius: 50%;
     border-bottom-right-radius: 50%;
     border-top: 2px solid var(--dark-purple);
+    font-weight: bolder;
     font-family: 'Indie Flower', cursive;
     font-size: 20px;
     color: var(--dark-purple);
@@ -55,6 +56,7 @@ body {
     padding: 2px;
     border-radius: 6px;
     border-style: outset;
+    font-weight: 1000;
 }
 
 /* pseudo-classes for saved searches and clear button */
@@ -79,6 +81,11 @@ body {
 #search-button:hover {
     transform: scale(1.1);
     transition: all 250ms ease;
+}
+
+/* sets font family for what the user searches*/
+#user-search{
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 /* setting the modal button to hide */
@@ -187,7 +194,7 @@ article {
 }
 
 /* "feeling spicy?" text properties */
-h6 {
+h4 {
     font-family: 'Indie Flower', cursive;
     color: var(--yellow);
     text-shadow: 2px 2px 6px var(--dark-purple);
